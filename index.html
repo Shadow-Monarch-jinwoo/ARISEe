@@ -324,14 +324,19 @@
 <div class="font-code-sm text-primary-fixed mb-6">
 <span class="text-secondary-fixed">root@arise</span>:<span class="text-outline">~</span>$ <span class="text-on-surface">&gt; System.awaken();</span><span class="inline-block w-2 h-4 bg-primary-fixed ml-1 translate-y-1 cursor-blink"></span>
 </div>
-<div class="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4">
-<div class="relative w-full sm:w-2/3">
-<span class="absolute left-3 top-1/2 -translate-y-1/2 text-primary-fixed font-code-sm">&gt;_</span>
-<input class="w-full bg-transparent border-0 border-b border-outline-variant text-on-surface font-code-sm text-code-sm pl-10 pr-4 py-3 terminal-input transition-all placeholder:text-outline-variant focus:border-primary-fixed" placeholder="Enter Email to initialize..." type="email">
-</div>
-<button class="w-full sm:w-1/3 sys-button border border-primary-fixed text-primary-fixed font-label-caps text-label-caps py-3 px-6 uppercase tracking-widest bg-primary-fixed/5">
-                [ Accept Quest ]
-            </button>
+<div id="top-registration-form-container" class="w-full">
+    <div id="top-registration-form" class="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+        <div class="relative w-full sm:w-2/3">
+            <span class="absolute left-3 top-1/2 -translate-y-1/2 text-primary-fixed font-code-sm">&gt;_</span>
+            <input id="top-email-input" class="w-full bg-transparent border-0 border-b border-outline-variant text-on-surface font-code-sm text-code-sm pl-10 pr-4 py-3 terminal-input transition-all placeholder:text-outline-variant focus:border-primary-fixed" placeholder="Enter Email to initialize..." type="email">
+        </div>
+        <button id="top-submit-btn" class="w-full sm:w-1/3 sys-button border border-primary-fixed text-primary-fixed font-label-caps text-label-caps py-3 px-6 uppercase tracking-widest bg-primary-fixed/5">
+            [ Accept Quest ]
+        </button>
+    </div>
+    <div id="top-success-message" class="hidden text-center mt-6">
+        <span class="font-code-sm text-lg text-[#00e5ff] drop-shadow-[0_0_10px_#00e5ff] uppercase tracking-widest">[SYSTEM: Registration Complete]</span>
+    </div>
 </div>
 </div>
 </div>
@@ -524,6 +529,31 @@
         } else {
             document.getElementById('registration-form').style.display = 'none';
             document.getElementById('success-message').classList.remove('hidden');
+        }
+    });
+
+    document.getElementById('top-submit-btn').addEventListener('click', async () => {
+        const emailInput = document.getElementById('top-email-input');
+        const email = emailInput.value.trim();
+        
+        if (!email) {
+            alert('Please enter an email.');
+            return;
+        }
+
+        document.getElementById('top-submit-btn').innerText = '[ PROCESSING... ]';
+
+        const { data, error } = await supabaseClient
+            .from('registrations')
+            .insert([{ email: email }]);
+
+        if (error) {
+            console.error('Error inserting email:', error);
+            alert('Error: ' + error.message);
+            document.getElementById('top-submit-btn').innerText = '[ Accept Quest ]';
+        } else {
+            document.getElementById('top-registration-form').style.display = 'none';
+            document.getElementById('top-success-message').classList.remove('hidden');
         }
     });
 </script>
