@@ -523,9 +523,15 @@
             .insert([{ email: email }]);
 
         if (error) {
-            console.error('Error inserting email:', error);
-            alert('Error: ' + error.message);
-            document.getElementById('submit-btn').innerText = '[ Accept Quest ]';
+            if (error.code === '23505') {
+                document.getElementById('registration-form').style.display = 'none';
+                document.getElementById('success-message').innerHTML = '<span class="font-code-sm text-xl text-[#00e5ff] drop-shadow-[0_0_10px_#00e5ff] uppercase tracking-widest">[SYSTEM: Already Registered]</span>';
+                document.getElementById('success-message').classList.remove('hidden');
+            } else {
+                console.error('Error inserting email:', error);
+                alert('Error: ' + error.message);
+                document.getElementById('submit-btn').innerText = '[ Accept Quest ]';
+            }
         } else {
             document.getElementById('registration-form').style.display = 'none';
             document.getElementById('success-message').classList.remove('hidden');
@@ -548,9 +554,15 @@
             .insert([{ email: email }]);
 
         if (error) {
-            console.error('Error inserting email:', error);
-            alert('Error: ' + error.message);
-            document.getElementById('top-submit-btn').innerText = '[ Accept Quest ]';
+            if (error.code === '23505') {
+                document.getElementById('top-registration-form').style.display = 'none';
+                document.getElementById('top-success-message').innerHTML = '<span class="font-code-sm text-lg text-[#00e5ff] drop-shadow-[0_0_10px_#00e5ff] uppercase tracking-widest">[SYSTEM: Already Registered]</span>';
+                document.getElementById('top-success-message').classList.remove('hidden');
+            } else {
+                console.error('Error inserting email:', error);
+                alert('Error: ' + error.message);
+                document.getElementById('top-submit-btn').innerText = '[ Accept Quest ]';
+            }
         } else {
             document.getElementById('top-registration-form').style.display = 'none';
             document.getElementById('top-success-message').classList.remove('hidden');
