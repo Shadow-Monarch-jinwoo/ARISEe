@@ -45,7 +45,7 @@ tailwind.config = {
 </head>
 <body class="antialiased relative font-body-base">
     
-    <div class="relative w-[1100px] h-[650px] max-w-[95vw] max-h-[90vh] flex items-center justify-center">
+    <div class="relative w-[95vw] max-w-[1100px] flex items-center justify-center" style="aspect-ratio: 1100/650;">
         <!-- Complex SVG Frame matching the image -->
         <svg class="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 1100 650" preserveAspectRatio="none">
             <defs>
@@ -103,18 +103,18 @@ tailwind.config = {
                 <div class="w-8 h-8 rounded-full border-[1.5px] border-white/70 flex items-center justify-center bg-transparent">
                     <span class="text-white/90 font-bold text-lg leading-none">!</span>
                 </div>
-                <h1 class="font-display-lg-mobile text-lg sm:text-2xl text-white tracking-[0.1em] glow-text">**[!] GUILDS**</h1>
+                <h1 class="font-display-lg-mobile text-sm sm:text-lg md:text-2xl text-white tracking-[0.1em] glow-text">**[!] GUILDS**</h1>
             </div>
 
-            <p class="text-center font-body-base text-sm sm:text-[20px] text-[#b0d8e0] leading-[1.4] sm:leading-[1.8] max-w-xl tracking-wide opacity-90 text-shadow-sm">
+            <p class="text-center font-body-base text-xs sm:text-sm md:text-[20px] text-[#b0d8e0] leading-[1.4] sm:leading-[1.8] max-w-xl tracking-wide opacity-90 text-shadow-sm overflow-y-auto">
                 Access to guild formation, management, and<br>collaborative features is currently restricted. Guild<br>registry protocols and community communication<br>channels are undergoing essential System updates.<br>Feature will be available soon.
             </p>
         </div>
 
         <div class="absolute left-1/2 -translate-x-1/2 z-30" style="bottom: 6.7%;">
             <a href="index.html" class="flex items-center space-x-2 border-[1.5px] border-white/30 px-4 sm:px-6 py-1 sm:py-[6px] bg-[#020b14]/80 hover:bg-[#00e5ff]/20 text-[#a2d8e4] hover:text-white font-label-caps uppercase tracking-widest transition-all shadow-[0_0_10px_rgba(0,229,255,0.2)]">
-                <span class="material-symbols-outlined text-base">arrow_back</span>
-                <span class="text-[13px]">BACK</span>
+                <span class="material-symbols-outlined text-sm sm:text-base">arrow_back</span>
+                <span class="text-[10px] sm:text-[13px]">BACK</span>
             </a>
         </div>
     </div>
